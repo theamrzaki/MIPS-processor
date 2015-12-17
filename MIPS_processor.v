@@ -91,7 +91,7 @@ wire out_mux_normal_or_branch;
 mux_32bit mux_32bit_2(normal_address,updated_branch_address,normal_or_branch,out_mux_normal_or_branch);
 
 //mux32
-mux_32bit_4input mux_32bit_4input(jump_32,out_mux_normal_or_branch,read_data_1,Jump,JumpRegister,initial_address);
+mux_32bit_4input mux_32bit_4input(out_mux_normal_or_branch,jump_32,read_data_1,Jump,JumpRegister,initial_address);
 
 
 //##############################################################
@@ -102,6 +102,6 @@ wire[31:0] meomry_data_output;
 data_memory#(4)(meomry_data_output,alu_output,read_date_2,clk,MemWrite,MemRead);//####//1G word
 
 //mux32
-mux_32bit_4input mux_32bit_4input_of_memory(meomry_data_output,alu_output,normal_address,MemtoReg[0],MemtoReg[1],write_data);
+mux_32bit_4input mux_32bit_4input_of_memory(alu_output,meomry_data_output,normal_address,MemtoReg[0],MemtoReg[1],write_data);
 
 endmodule
