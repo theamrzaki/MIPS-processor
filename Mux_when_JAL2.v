@@ -4,8 +4,8 @@ input [31:0] a;
 input [31:0] b;
 input [31:0] pcPlus4;
 output [31:0] y;
-input [1:0] sel_0;
-input [1:0] sel_1;
+input  sel_0;
+input  sel_1;
 reg [4:0] y;
 integer i;
 
