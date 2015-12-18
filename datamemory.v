@@ -1,4 +1,4 @@
-module dataaaaa_memory#(parameter size_ward=2)(read_data,address,write_data,clk,memwrite,memread);
+module data_memory#(parameter size_ward=2)(read_data,address,write_data,clk,memwrite,memread);
 output reg[31:0]read_data;
 input [31:0]write_data;
 input [$clog2(4*size_ward)-1:0]address;
