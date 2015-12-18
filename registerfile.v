@@ -21,7 +21,7 @@ reg [31:0]register[0:31];
 		#200  read_date_2<=#100 register[read_register_2];		
  		join*/
 //async read
-always@(posedge clk or(read_register_1||read_register_2))  
+always@(posedge clk or read_register_1 or read_register_2)  
 		fork  
 		  read_data_1<=#100 register[read_register_1];
 		  read_date_2<=#100 register[read_register_2];		
