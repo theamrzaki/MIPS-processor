@@ -44,10 +44,10 @@ sign_ext (address,extended_address);
 
 
 //control unit
-wire Jump,Branch,MemRead,MemWrite,ALUSrc,JumpRegister;
+wire Jump,Branch,MemRead,MemWrite,ALUSrc;
 wire[1:0]  MemtoReg;
 wire[5:0]  ALUOp;//###//can be 2 never bigger
-control_unit control_unit(op,func,regDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,regwrite,JumpRegister);
+control_unit control_unit(op,func,regDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,regwrite);
 
 
 //jump sign extension
@@ -60,7 +60,8 @@ wire[31:0] jump_32={pc_4_jump,jump_28};
 
 //alu control
 wire[4:0] alu_control;
-alu_control_unit alu_control_unit(ALUOp,func,alu_control);
+wire JumpRegister;
+alu_control_unit alu_control_unit(ALUOp,func,alu_control,JumpRegister);
 
 //##############################################################
 //################  exceution ##################################
