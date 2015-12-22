@@ -47,7 +47,7 @@ sign_ext (address,extended_address);
 wire Jump,Branch,MemRead,MemWrite,ALUSrc;
 wire[1:0]  MemtoReg;
 wire[5:0]  ALUOp;//###//can be 2 never bigger
-control_unit control_unit(op,func,regDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,regwrite);
+control_unit control_unit(op,regDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,regwrite);
 
 
 //jump sign extension
