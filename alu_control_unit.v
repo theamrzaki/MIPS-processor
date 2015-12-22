@@ -4,8 +4,8 @@ input [5:0] Funct;//R-type function /[5-0] instruction
 output reg [3:0] Output;//output to ALU
 output reg JumpRegister;//jump to address specified in register 
 always @ (Opcode) begin #25
+	JumpRegister=1'b0;
 	case(Opcode)
-		JumpRegister=1'b0;
 		6'b000_000:
 		case(Funct)
 		6'b100_000:Output=4'b0010;//add
