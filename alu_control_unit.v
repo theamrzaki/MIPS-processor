@@ -5,7 +5,7 @@ output reg [3:0] Output;//output to ALU
 output reg JumpRegister;//jump to address specified in register 
 always @ (Opcode) begin #25
 	case(Opcode)
-		JumpRegister=0;
+		JumpRegister=1'b0;
 		6'b000_000:
 		case(Funct)
 		6'b100_000:Output=4'b0010;//add
@@ -14,7 +14,7 @@ always @ (Opcode) begin #25
 		6'b100_111:Output=4'b1100;//nor
 		6'b001_000:begin//jr
 		Output=4'b1111;
-		JumpRegister=1;
+		JumpRegister=1'b1;
 		end
 		6'b101_010:Output=4'b0111;//slt
 		endcase
