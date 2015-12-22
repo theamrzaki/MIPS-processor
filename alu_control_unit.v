@@ -3,7 +3,7 @@ input [5:0] Opcode;//operation control code / [31-26] instruction
 input [5:0] Funct;//R-type function /[5-0] instruction
 output reg [3:0] Output;//output to ALU
 output reg JumpRegister;//jump to address specified in register 
-always @ (Opcode) begin #25
+always @ (Opcode or Funct) begin #25
 	JumpRegister=1'b0;
 	case(Opcode)
 		6'b000_000:
