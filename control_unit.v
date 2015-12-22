@@ -1,6 +1,5 @@
-module control_unit(Opcode,Funct,RegDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,RegWrite);
+module control_unit(Opcode,RegDst,Jump,Branch,MemRead,MemtoReg,ALUOp,MemWrite,ALUSrc,RegWrite);
 input [5:0] Opcode;//operation control code / [31-26] instruction
-input [5:0] Funct;//R-type function /[5-0] instruction
 output reg [1:0] RegDst;//Register file register(rt/rd) mux/selector to write data to
 output reg Jump;//jump to address or normal increment mux
 output reg Branch;
