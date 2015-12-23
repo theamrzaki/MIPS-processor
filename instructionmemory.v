@@ -15,6 +15,6 @@ always@(posedge clk)
     join
 initial
    begin
-    $readmemh("instmem.txt",regester);
+    $readmemb("instmem.txt",regester);
    end
 endmodule
