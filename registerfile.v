@@ -10,7 +10,7 @@ reg [31:0]register[0:31];
 	  end
 	always@(posedge clk)
 		#700	//xxx1  &&  //1010
-		if(regwrite&&write_register)register[write_register]<=#100 write_data;
+		if(regwrite)register[write_register]<=#100 write_data;
 		// any write register -->results in a number(logical operator)....bec of && it would be seen as true 
 		// sees a number not bits
 

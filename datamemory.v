@@ -1,9 +1,9 @@
-module data_memory#(parameter size_ward=2)(read_data,address,write_data,clk,memwrite,memread);
+module data_memory(read_data,address,write_data,clk,memwrite,memread);
 output reg[31:0]read_data;
 input [31:0]write_data;
-input [$clog2(4*size_ward)-1:0]address;
+input [31:0]address;
 input memread,memwrite,clk;
-reg [7:0] regester [0:size_ward*4-1];
+reg [7:0] regester [0:31];
 //async read
 always@(posedge  clk or address )
 	#200    read_data<={regester[address],regester[address+1],regester[address+2],regester[address+3]};
@@ -15,7 +15,7 @@ always @(posedge clk)
 	#200	regester[address+1]<=write_data[23:16];
 	#200	regester[address+2]<=write_data[15:8];
 	#200	regester[address+3]<=write_data[7:0];
-	#201    $writememh("datamem.txt",regester);
+	#201    $writememb("datamem.txt",regester);
 	   join
   
 //sync read
@@ -36,7 +36,7 @@ always @(posedge clk)
 */
 initial
    begin
-    $readmemh("initial_datamem.txt",regester);
+    $readmemb("initial_datamem.txt",regester);
    end
 
 endmodule

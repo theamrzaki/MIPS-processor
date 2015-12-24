@@ -6,7 +6,7 @@ input [31:0] pcPlus4;
 output [31:0] y;
 input  sel_0;
 input  sel_1;
-reg [4:0] y;
+reg [31:0] y;
 integer i;
 
 always@(a or b or sel_0 or sel_1) 

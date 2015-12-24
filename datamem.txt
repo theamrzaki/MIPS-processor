@@ -1,11 +1,35 @@
 // memory data file (do not edit the following line - required for mem load use)
-// instance=/data_memory/regester
-// format=hex addressradix=h dataradix=h version=1.0 wordsperline=1 noaddress
-00
-11
-22
-33
-aa
-aa
-aa
-aa
+// instance=/MIPS_processor/data_memory/regester
+// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress
+00000000
+00000000
+00000000
+00000100
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx
+xxxxxxxx

@@ -6,11 +6,11 @@ input wire [4:0]shamt,
 output reg zero_signal,
 output reg [31:0] out);
 
-parameter add=0010, addi=0011,
-	  lw=1000, sw=1001,
-	  sll=0100,And=0000,Andi=0001,Nor=1100,
-	  beq=1010,jal=1011,jr=1111,
-	  slt=0111;
+parameter add=4'b0010, addi=4'b0011,
+	  lw=4'b1000, sw=4'b1001,
+	  sll=4'b0100,And=4'b0000,Andi=4'b0001,Nor=4'b1100,
+	  beq=4'b1010,jal=4'b1011,jr=4'b1111,
+	  slt=4'b0111;
 
 always@(alu_control)
    begin #200
@@ -75,4 +75,26 @@ always@(alu_control)
 			end  
 	endcase
    end
+endmodule
+
+
+
+module alu_test;
+reg [31:0] in_1;
+reg [31:0] in_2;
+reg [3:0]alu_control;
+reg [4:0]shamt;
+wire zero_signal;
+wire [31:0] out;
+initial begin
+in_1=32'h000000000;
+in_2=32'h000000004;
+alu_control=4'b0011;
+shamt=5'b00000;
+end
+alu alu(in_1,in_2,alu_control,shamt,zero_signal,out);
+always
+begin
+#100 $monitor($time,": in_1:%b,in_2:%b,alu_control:%b,shamt:%b,zero_signal:%b,out:%b",in_1,in_2,alu_control,shamt,zero_signal,out);
+end 
 endmodule

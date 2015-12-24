@@ -40,7 +40,6 @@ always @ (Opcode) begin #50
 		//////////////////////////////////////////////////////////////////
 
 		6'b101_011:begin//	save word (sw)		//////////////////
-		//RegDst<=2'bxx;
 		Jump<=1'b0;							//
 		Branch<=1'b0;
 		MemRead<=1'b0;							//
@@ -52,7 +51,7 @@ always @ (Opcode) begin #50
 		//////////////////////////////////////////////////////////////////
 
 		6'b001_000:begin//	add imediate (addi)	//////////////////
-		RegDst<=2'b01;
+		RegDst<=2'b00;
 		Jump<=1'b0;							//
 		Branch<=1'b0;
 		MemRead<=1'b0;							//
@@ -65,7 +64,7 @@ always @ (Opcode) begin #50
 		//////////////////////////////////////////////////////////////////
 
 		6'b001_100:begin//	and imediate(andi)	//////////////////
-		RegDst<=2'b01;
+		RegDst<=2'b00;
 		Jump<=1'b0;							//
 		Branch<=1'b0;
 		MemRead<=1'b0;							//

@@ -1,9 +1,9 @@
-module instruction_memory#(parameter size_ward=2)(op,rs,rt,rd,shamt,func,read_address,clk);
+module instruction_memory(op,rs,rt,rd,shamt,func,read_address,clk);
 input clk;
-input [$clog2(size_ward*4)-1:0]read_address;
+input [31:0]read_address;
 output reg[5:0]op,func;
 output reg[4:0]rs,rt,rd,shamt;
-reg [7:0] regester [0:size_ward*4-1];
+reg [7:0] regester [0:31];
 always@(posedge clk)
     fork
 	#200  op={regester[read_address][7:2]};            
@@ -17,4 +17,25 @@ initial
    begin
     $readmemb("instmem.txt",regester);
    end
+endmodule
+
+module instruction_memory_test;
+
+reg clk;
+reg [31:0]read_address;
+wire[5:0]op,func;
+wire[4:0]rs,rt,rd,shamt;
+
+instruction_memory instruction_memory(op,rs,rt,rd,shamt,func,read_address,clk);
+
+initial begin
+clk=1;
+read_address=32'h00000000;
+end
+
+always
+begin
+#100 clk=~clk;
+$monitor($time,"op:%b,rs:%b,rt:%b,rd:%b,shamt:%b,func:%b,read_address:%b,clk:%b",op,rs,rt,rd,shamt,func,read_address,clk);
+end
 endmodule
