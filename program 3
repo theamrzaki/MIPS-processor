@@ -1,0 +1,31 @@
+***********program 2 "The Fibonacci Sequence " to store The Fibonacci Sequence at memory untell the (max) in program 2 *******************
+assembly 					hexa
+	//form program 2 $t0->1;$t2->max
+	addi $t1,$0,2				20090002        
+	addi $s0,$0,108				2010006c	
+	sw $0,0($s0)				ae000000	
+	add $t3,$0,$0				00005820	
+	sw $t0,4($s0)				ae080004	
+	addi $t4,$0,1				200c0001	
+	addi $t5,$0,1				200d0001	
+l1:     slt $t6,$t5,$t2				01aa702a	
+	beq $t6,$0,l2				11c00008	
+l3:	sll $t6,$t1,2				00097080	
+	add $t6,$t6,$s0				01d07020	
+	sw  $t5,0($t6)				adcd0000	
+	add $t3,$0,$t4				000c5820	
+	add $t4,$0,$t5				000d6020	
+	add $t5,$3,$t4				016c6820	
+	addi $t1,$t1,1				21290001	
+	jal l1					0c000032	
+l2:     beq $t5,$t2,l3				11aafff7	
+
+c++ code
+	//max=?? from tha past program
+	i = 2;
+	Fibonacci[0] = x = 0;
+	Fibonacci[1] = y = 1;
+	z=1;
+x:
+	if (z <= max){ Fibonacci[i] = x + y; x = y; y = z;z = x + y; i++; goto x; }
+	
