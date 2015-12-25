@@ -1,0 +1,33 @@
+***********program 2 "find the max&min " to find the max &min of array of data stored at memory*******************
+assembly					hexa
+	addi $s0,$0,28				2010001c
+	addi $t0,$0,1				20080001
+	addi $t1,$0,20				20090014
+	lw $t2,0($s0)				8e0a0000
+	lw $s2,0($s0)				8e120000
+	addi $t3,$0,1				200b0001
+	slt $t4,$t3,$t1				0169602a
+	beq $t4,$0,l1				1180000c
+l4	sll $t5,$t3,2				000b6880
+	add $t5,$t5,$s0				01b06820
+	lw  $t6,0($t5)				8dae0000
+	slt $t4,$t2,$t6				014e602a
+	beq $t4,$0,l2				11800001
+	add $t2,$0,$t6				000e5020
+l2:	slt $t4,$s2,$t6				024e602a
+	beq $t4,$t0,l3				11880001
+	add $s2,$0,$t6				000e9020
+l3:	addi $t3,$t3,1				216b0001
+	slt $t4,$t3,$t1				0169602a
+	beq $t4,$t0,l4				1188fff4
+l1:    
+c++ code
+
+num=20;
+max = a[0];
+min =a[0];
+	for(i=1;i<num;i++)
+	   {
+		if(max<a[i])max=a[i];
+		if(min>a[i])min=a[i];
+	   }
