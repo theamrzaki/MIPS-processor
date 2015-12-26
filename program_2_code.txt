@@ -1,0 +1,21 @@
+addi $s0,$0,28
+addi $t0,$0,1
+addi $t1,$0,20
+lw $t2,0($s0)
+lw $s2,0($s0)
+addi $t3,$0,1
+slt $t4,$t3,$t1
+beq $t4,$0,l1
+l4:sll $t5,$t3,2
+add $t5,$t5,$s0
+lw  $t6,0($t5)
+slt $t4,$t2,$t6
+beq $t4,$0,l2
+add $t2,$0,$t6
+l2:slt $t4,$s2,$t6
+beq $t4,$t0,l3
+add $s2,$0,$t6
+l3:addi $t3,$t3,1
+slt $t4,$t3,$t1
+beq $t4,$t0,l4
+l1:
