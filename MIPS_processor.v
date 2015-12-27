@@ -1,22 +1,18 @@
 module MIPS_processor();
 reg clk;
-
 //clk 
-initial 
+initial begin
 clk=1;
+end
 always
 #800 clk=~clk;
-
 
 //##############################################################
 //#########		instruction fetch	################
 //pc counter
 wire[31:0] initial_address;
 wire[31:0] out_address;
-initial begin
-//initial_address2=32'h00000000;
 
-end
 pc_counter pc_counter(out_address,initial_address,clk);
 
 //instruction memory
@@ -27,7 +23,7 @@ instruction_memory instruction_memory(op,rs,rt,rd,shamt,func,out_address,clk);
 //mux of write register
 wire[1:0] regDst;
 wire[4:0] write_register;
- mux_5bits mux_5bits(rt,rd,5'd31,regDst[0],regDst[1],write_register);
+mux_5bits mux_5bits(rt,rd,5'd31,regDst[0],regDst[1],write_register);
 
 //adder of pc+4
 wire[31:0] normal_address;
@@ -85,7 +81,7 @@ sl_for_upper_alu sl_for_upper_alu(extended_address,branch_address);
 
 //upper alu for branch
 wire[31:0] updated_branch_address;
- adder adder2(normal_address ,branch_address,updated_branch_address);
+adder adder2(normal_address ,branch_address,updated_branch_address);
 
 //and 1
 wire normal_or_branch;
@@ -108,5 +104,32 @@ data_memory data_memory(meomry_data_output,alu_output,read_date_2,clk,MemWrite,M
 
 //mux32
 mux_32bit_4input mux_32bit_4input_of_memory(alu_output,meomry_data_output,normal_address,MemtoReg[0],MemtoReg[1],write_data);
+
+
+//data_path_tracking
+integer file;
+integer counter;
+
+parameter 
+add=4'b0010, addi=4'b0011,lw=4'b1000, sw=4'b1001,
+sll=4'b0100,And=4'b0000,Andi=4'b0001,Nor=4'b1100,
+beq=4'b1010,jal=4'b1011,jr=4'b1111,slt=4'b0111;
+
+initial begin
+counter=0;
+$fclose($fopen("tracking.txt","w"));
+end
+
+always @ alu_control
+if(alu_control==add || alu_control==addi || alu_control==lw || alu_control==sw || alu_control==sll || alu_control==And || alu_control==And
+ || alu_control==Andi || alu_control==Nor || alu_control==beq || alu_control==jal || alu_control==jal || alu_control==slt)begin
+$monitor($time,": number of executed instructions:%02d,address:out_address:0x%h,alu_control:%b",counter,out_address,alu_control);
+counter=counter+1;
+file = $fopen("tracking.txt","a");
+$fdisplay(file,$time,": instruction:%02d, address:0x%h",counter,out_address);
+$fclose(file);	
+end
+else
+$stop(2);
 
 endmodule
